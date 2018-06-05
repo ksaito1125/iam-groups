@@ -52,3 +52,19 @@ Resources:
                   - "iam:ListVirtualMFADevices"
                   - "iam:ListUsers"
                 Resource: "*"
+              - Effect: Allow
+                Action:
+                  - "iam:*LoginProfile"
+                  - "iam:*AccessKey*"
+                  - "iam:*SSHPublicKey*"
+                Resource:
+                  Fn::Sub:
+                    - arn:aws:iam::${awsid}:user/${awsuser}
+                    - { awsid: !Ref "AWS::AccountId", awsuser: "${aws:username}" }
+              - Effect: Allow
+                Action:
+                  - "iam:ListAccount*"
+                  - "iam:GetAccountSummary"
+                  - "iam:GetAccountPasswordPolicy"
+                  - "iam:ListUsers"
+                Resource: "*"
