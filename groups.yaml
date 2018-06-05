@@ -1,0 +1,22 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Resources:
+  UsersGroup:
+    Type: "AWS::IAM::Group"
+    Properties:
+      GroupName: "Users"
+      Policies:
+        - PolicyName: group-user-policy
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action:
+                  - "iam:GetAccountPasswordPolicy"
+                Resource: "*"
+              - Effect: Allow
+                Action:
+                  - "iam:ChangePassword"
+                Resource:
+                  Fn::Sub:
+                    - arn:aws:iam::${awsid}:user/${awsuser}
+                    - { awsid: !Ref "AWS::AccountId", awsuser: "${aws:username}" }
