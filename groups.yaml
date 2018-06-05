@@ -20,3 +20,35 @@ Resources:
                   Fn::Sub:
                     - arn:aws:iam::${awsid}:user/${awsuser}
                     - { awsid: !Ref "AWS::AccountId", awsuser: "${aws:username}" }
+              - Effect: Allow
+                Action:
+                  - "iam:CreateVirtualMFADevice"
+                  - "iam:EnableMFADevice"
+                  - "iam:ResyncMFADevice"
+                  - "iam:DeleteVirtualMFADevice"
+                Resource:
+                  - Fn::Sub:
+                      - arn:aws:iam::${awsid}:mfa/${awsuser}
+                      - { awsid: !Ref "AWS::AccountId", awsuser: "${aws:username}" }
+                  - Fn::Sub:
+                      - arn:aws:iam::${awsid}:user/${awsuser}
+                      - { awsid: !Ref "AWS::AccountId", awsuser: "${aws:username}" }
+              - Effect: Allow
+                Action:
+                  - "iam:DeactivateMFADevice"
+                Resource:
+                  - Fn::Sub:
+                      - arn:aws:iam::${awsid}:mfa/${awsuser}
+                      - { awsid: !Ref "AWS::AccountId", awsuser: "${aws:username}" }
+                  - Fn::Sub:
+                      - arn:aws:iam::${awsid}:user/${awsuser}
+                      - { awsid: !Ref "AWS::AccountId", awsuser: "${aws:username}" }
+                Condition:
+                  Bool:
+                    "aws:MultiFactorAuthPresent": true
+              - Effect: Allow
+                Action:
+                  - "iam:ListMFADevices"
+                  - "iam:ListVirtualMFADevices"
+                  - "iam:ListUsers"
+                Resource: "*"
