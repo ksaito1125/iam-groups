@@ -6,6 +6,10 @@ Resources:
       GroupName: "Admins"
       ManagedPolicyArns:
         - arn:aws:iam::aws:policy/AdministratorAccess
+  DevelopersGroup:
+    Type: "AWS::IAM::Group"
+    Properties:
+      GroupName: "Developers"
   UsersGroup:
     Type: "AWS::IAM::Group"
     Properties:

@@ -15,6 +15,10 @@ Usersグループは、一般ユーザのグループです。
 ルートアカウントと同じ権限を持ちます。
 通常は、利用しません。
 
+## Developersグループ
+
+開発者の権限を持ちます。
+
 ## 参考資料
 
 * [IAM ユーザーに自分のパスワードを変更する権限を付与する](https://docs.aws.amazon.com/ja_jp/IAM/latest/UserGuide/id_credentials_passwords_enable-user-change.html)
