@@ -1,5 +1,11 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Resources:
+  AdminsGroup:
+    Type: "AWS::IAM::Group"
+    Properties:
+      GroupName: "Admins"
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/AdministratorAccess
   UsersGroup:
     Type: "AWS::IAM::Group"
     Properties:
