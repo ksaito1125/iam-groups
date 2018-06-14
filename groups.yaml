@@ -3,7 +3,7 @@ Resources:
   AdminsGroup:
     Type: "AWS::IAM::Group"
     Properties:
-      GroupName: "Admins"
+      GroupName: "Administrators"
   DevelopersGroup:
     Type: "AWS::IAM::Group"
     Properties:
@@ -19,11 +19,16 @@ Resources:
             Statement:
               - Effect: Allow
                 Action:
+                  - "iam:ListUsers"
                   - "iam:GetAccountPasswordPolicy"
                 Resource: "*"
               - Effect: Allow
                 Action:
+                  - "iam:*AccessKey*"
                   - "iam:ChangePassword"
+                  - "iam:GetUser"
+                  - "iam:*ServiceSpecificCredential*"
+                  - "iam:*SigningCertificate*"
                 Resource:
                   Fn::Sub:
                     - arn:aws:iam::${awsid}:user/${awsuser}
@@ -58,12 +63,10 @@ Resources:
                 Action:
                   - "iam:ListMFADevices"
                   - "iam:ListVirtualMFADevices"
-                  - "iam:ListUsers"
                 Resource: "*"
               - Effect: Allow
                 Action:
                   - "iam:*LoginProfile"
-                  - "iam:*AccessKey*"
                   - "iam:*SSHPublicKey*"
                 Resource:
                   Fn::Sub:
