@@ -1,5 +1,9 @@
 # IAMグループ
 
+IAMグループを作成するテンプレートです。
+
+IAMグループは、個別に定義したグループと[職務機能の AWS 管理ポリシー](https://docs.aws.amazon.com/ja_jp/IAM/latest/UserGuide/access_policies_job-functions.html)に定義されたグループがあります。
+
 ## Usersグループ
 
 Usersグループは、一般ユーザのグループです。
@@ -10,14 +14,15 @@ Usersグループは、一般ユーザのグループです。
 * MFAデバイスを管理する
 * アクセスキー、SSHキーを管理する
 
-## Adminsグループ
+## 職務機能別グループ
 
-ルートアカウントと同じ権限を持ちます。
-通常は、利用しません。
+[職務機能の AWS 管理ポリシー](https://docs.aws.amazon.com/ja_jp/IAM/latest/UserGuide/access_policies_job-functions.html)から下記のグループを定義します。
+グループへの権限付与はせず、ロールの切り替えを使います。
 
-## Developersグループ
-
-開発者の権限を持ちます。
+| グループ名 | ポリシー名         |
+|:-----------|--------------------|
+| Admins     | 管理者             |
+| Developers | 開発者パワーユーザ |
 
 ## 参考資料
 
